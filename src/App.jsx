@@ -37,9 +37,9 @@ function App() {
       console.log("Service Worker Registered...");
     }
 
-    // if ("serviceWorker" in navigator) {
-    //   send().catch((err) => console.error(err));
-    // }
+    if ("serviceWorker" in navigator) {
+      send().catch((err) => console.error(err));
+    }
   }, []);
 
   const handleSubscribe = async () => {
