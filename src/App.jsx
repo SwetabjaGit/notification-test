@@ -56,7 +56,7 @@ function App() {
       server: publicVapidKey,
       subscription
     }
-    await fetch("http://localhost:8080/api/v1/subscription/save", {
+    await fetch("https://ultimate-push-backend-production.up.railway.app/api/v1/subscription/save", {
       method: "POST",
       headers: {
         "content-type": "application/json",
