@@ -1,5 +1,7 @@
 console.log("Service Worker Loaded...");
 
+let campaignId = "";
+
 self.addEventListener("push", (event) => {
   if (event.data) {
     const data = event.data.json();
@@ -24,6 +26,18 @@ self.addEventListener("notificationclick", (event) => {
   event.notification.close(); // Close the notification when clicked
 
   const urlToOpen = event.notification.data.url; // Retrieve the URL from the notification data
+
+  // Call the incrementClick API
+  console.log("CampaignId: ", campaignId);
+  fetch(
+    `https://ultimate-push-backend-production.up.railway.app/api/v1/campaign/incrementclick/${campaignId}`, 
+    {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+    }
+  );
 
   event.waitUntil(
     clients.matchAll({ type: "window", includeUncontrolled: true }).then((clientList) => {
