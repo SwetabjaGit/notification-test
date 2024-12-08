@@ -7,6 +7,9 @@ self.addEventListener("push", (event) => {
     const data = event.data.json();
     console.log("Push event!! ", data);
 
+    campaignId = data.campaignId;
+    console.log("CampaignId: ", campaignId);
+
     self.registration.showNotification(data.title, {
       body: data.body,
       image: data.image,
