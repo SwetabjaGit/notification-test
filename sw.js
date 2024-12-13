@@ -8,7 +8,6 @@ self.addEventListener("push", (event) => {
     console.log("Push event!! ", data);
 
     campaignId = data.campaignId;
-    console.log("CampaignId: ", campaignId);
 
     self.registration.showNotification(data.title, {
       body: data.body,
@@ -30,8 +29,7 @@ self.addEventListener("notificationclick", (event) => {
 
   const urlToOpen = event.notification.data.url; // Retrieve the URL from the notification data
 
-  // Call the incrementClick API
-  console.log("CampaignId: ", campaignId);
+  //console.log("CampaignId: ", campaignId);
   fetch(
     `https://ultimate-push-backend-production.up.railway.app/api/v1/campaign/incrementclick/${campaignId}`, 
     {
@@ -56,4 +54,5 @@ self.addEventListener("notificationclick", (event) => {
       }
     })
   );
+
 });

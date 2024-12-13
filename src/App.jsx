@@ -9,7 +9,6 @@ function App() {
 
   const publicVapidKey = "BBXR_R7gx9k7Q8NXjD8yQv8JAq4f_ne37hL83n_seoWM3_GR76nPSia8lwJ4QZdHUW28kG6IQjiPXea5mSvzMCM";
 
-
   function urlBase64ToUint8Array(base64String) {
     const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
     const base64 = (base64String + padding)
@@ -26,9 +25,7 @@ function App() {
   }
 
   useEffect(() => {
-
     async function send() {
-      // Register Service Worker
       console.log("Registering service worker...");
       const registerObj = await navigator.serviceWorker.register("./sw.js", {
         scope: "/",
@@ -43,15 +40,13 @@ function App() {
   }, []);
 
   const handleSubscribe = async () => {
-    // Register Push
     console.log("Registering Push...");
     const subscription = await register.pushManager.subscribe({
       userVisibleOnly: true,
       applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
     });
-    console.log(subscription);
+    //console.log(subscription);
     console.log("Push Registered...");
-    console.log("Sending Push...");
     const payload = {
       server: publicVapidKey,
       subscription
@@ -63,7 +58,7 @@ function App() {
       },
       body: JSON.stringify(payload),
     });
-    console.log("Push Sent...");
+    console.log("Subscription Saved...");
   }
 
   return (
